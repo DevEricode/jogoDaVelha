@@ -14,7 +14,7 @@ for(let i = 0; i < boxes.length; i++) {
 
     boxes[i].addEventListener('click', function() {
 
-        let elemento =  checkPlayer(player1, player2)
+        let elemento =  verificaPlayer(player1, player2);
 
 
         if(this.childNodes.length === 0) {
@@ -33,14 +33,16 @@ for(let i = 0; i < boxes.length; i++) {
 
 }
 
+function verificaPlayer(player1, player2) {
 
-function checkPlayer(player1, player2) {
-
-    if(player1 == player2) {
+    if(player1 === player2) {
 
         elemento = x;
+
     } else {
 
         elemento = o;
     }
+
+    return elemento;
 };
