@@ -23,15 +23,50 @@ for(let i = 0; i < boxes.length; i++) {
             this.appendChild(cloneElemento);
 
             if(player1 === player2) {
+
                 player1++;
+
+                if(secondPlayer == 'ai-player') {
+
+                    computerPlay();
+
+                    player2++;
+
+                }
+
             } else {
+
                 player2++;
+
             }
 
             checkWinCondition();
 
         }
 
+    });
+
+}
+
+for(let i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener('click', function() {
+
+        secondPlayer = this.getAttribute('id');
+
+        for(let j = 0; j < buttons.length; j++) {
+    
+            buttons[j].style.display = 'none';
+    
+        }
+
+        setTimeout(function() {
+
+            let container = document.querySelector('#container');
+
+            container.classList.remove('hide');
+
+        }, 500);
     });
 
 }
@@ -255,4 +290,34 @@ function declareWinner(winner) {
         boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
         
     };
+};
+
+function computerPlay(){
+
+    let cloneO = o.cloneNode(true);
+    counter = 0;
+    filled = 0;
+
+    for(let i = 0; i < boxes.length; i++) {
+        
+        let randomNumber =  Math.floor(Math.random() * 5);
+
+        if(boxes[i].childNodes[0] == undefined ) {
+
+            boxes[i].appendChild(cloneO);
+            counter++
+            break;
+
+        } else {
+
+            filled++;
+
+        }
+
+    }
+
+    if(counter == 0 && filled < 9){
+        computerPlay();
+    };
+
 };
